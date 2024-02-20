@@ -5,7 +5,8 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import Root from './routes/Root'
 import ErrorPage from './ErrorPage'
 import Contact from './routes/Contact'
-import { action as rootAction, loader as rootLoader } from './loaders/contactLoader'
+import { loader as rootLoader } from './loaders/contactLoader'
+import { action as rootAction } from './actions/contactAction'
 
 const router = createBrowserRouter([
   {
