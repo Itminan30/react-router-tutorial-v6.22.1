@@ -1,4 +1,4 @@
-import { Link, Outlet, useLoaderData } from "react-router-dom";
+import { Form, Link, Outlet, useLoaderData } from "react-router-dom";
 
 export default function Root() {
     const { contacts } = useLoaderData();
@@ -25,9 +25,9 @@ export default function Root() {
                             aria-live="polite"
                         ></div>
                     </form>
-                    <form method="post">
+                    <Form method="post">
                         <button type="submit">New</button>
-                    </form>
+                    </Form>
                 </div>
                 <nav>
                     {
