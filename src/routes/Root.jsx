@@ -1,7 +1,8 @@
-import { Form, Link, NavLink, Outlet, useLoaderData } from "react-router-dom";
+import { Form, NavLink, Outlet, useLoaderData, useNavigation } from "react-router-dom";
 
 export default function Root() {
     const { contacts } = useLoaderData();
+    const navigation = useNavigation();
     return (
         <>
             <div id="sidebar">
@@ -38,8 +39,8 @@ export default function Root() {
                                         <li key={contact.id}>
                                             <NavLink
                                                 to={`contacts/${contact.id}`}
-                                                className={({isActive, isPending}) => {
-                                                    return isActive ? "active": isPending ? "pending": ""
+                                                className={({ isActive, isPending }) => {
+                                                    return isActive ? "active" : isPending ? "pending" : ""
                                                 }}
                                             >
                                                 {
@@ -71,7 +72,10 @@ export default function Root() {
                     }
                 </nav>
             </div>
-            <div id="detail">
+            <div
+                id="detail"
+                className={navigation.state === "loading" ? "loading" : ""}
+            >
                 <Outlet />
             </div>
         </>
