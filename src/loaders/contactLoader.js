@@ -4,7 +4,7 @@ export async function contactsLoader({request}) {
     const url = new URL(request.url);
     const q = url.searchParams.get("q");
     const contacts = await getContacts(q);
-    return { contacts };
+    return { contacts, q };
 }
 
 export async function contactLoader({ params }) {
