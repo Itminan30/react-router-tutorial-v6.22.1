@@ -1,4 +1,4 @@
-import { Form, Link, Outlet, useLoaderData } from "react-router-dom";
+import { Form, Link, NavLink, Outlet, useLoaderData } from "react-router-dom";
 
 export default function Root() {
     const { contacts } = useLoaderData();
@@ -36,33 +36,38 @@ export default function Root() {
                                 {
                                     contacts.map((contact) => (
                                         <li key={contact.id}>
-                                            <Link to={`contacts/${contact.id}`}>
+                                            <NavLink
+                                                to={`contacts/${contact.id}`}
+                                                className={({isActive, isPending}) => {
+                                                    return isActive ? "active": isPending ? "pending": ""
+                                                }}
+                                            >
                                                 {
                                                     contact.first || contact.last ? (
                                                         <>
-                                                        {contact.first} {contact.last}
+                                                            {contact.first} {contact.last}
                                                         </>
-                                                    ):
-                                                    (
-                                                        <i>
-                                                            No Names
-                                                        </i>
-                                                    )
+                                                    ) :
+                                                        (
+                                                            <i>
+                                                                No Names
+                                                            </i>
+                                                        )
                                                 } {" "}
                                                 {
                                                     contact.favourite && <span>★</span>
                                                 }
-                                            </Link>
+                                            </NavLink>
                                         </li>
                                     ))
                                 }
                             </ul>
-                        ): 
-                        (
-                            <p>
-                                <i>No Contacts</i>
-                            </p>
-                        )
+                        ) :
+                            (
+                                <p>
+                                    <i>No Contacts</i>
+                                </p>
+                            )
                     }
                 </nav>
             </div>
